@@ -1,0 +1,49 @@
+div {
+    font-family: 'Nuosu SIL', serif;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+body {
+    display: grid;
+    grid-template-rows: 2fr 5fr 1fr;
+}
+.container {
+    display: grid;
+    grid-row: 2 / 3;
+    grid-template-columns: repeat( auto-fit, 1fr );;
+    grid-template-rows: 1fr;
+}
+.card {
+    background-color: #0891b2;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    grid-row: 1 / 2;
+    width: clamp(200px, 300px, 600px);
+    height: 200px;
+    border-radius: 15px;
+    border: solid;
+    margin-left: 40px;
+}
+button {
+    border-radius: 10px;
+    height: 50px;
+    width: 150px;
+    background-color: #2563eb;
+    font-family: 'Nuosu SIL', serif;
+    font-family: 'Roboto', sans-serif;
+    grid-row: 3 / 4;
+    margin-top: 25px;
+    justify-self: center;
+}
+.description {
+    border-color: black;
+    background-color: aliceblue;
+    border: 5px solid;
+    position: absolute;
+    margin-top: 200px;
+    margin-left: 500px;
+    width: 400px;
+    height: 600px;
+    border-radius: 30px;
+}
