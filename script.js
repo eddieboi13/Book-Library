@@ -62,7 +62,7 @@ function displayBook() {
             
         })
         card.classList.add('card')
-        card.dataset.thing = myLibrary.indexOf(element)
+        card.dataset.index = myLibrary.indexOf(element)
         container.append(card)
         let divTitle = document.createElement('div')
         divTitle.append('Title: ' + element.title)
@@ -79,21 +79,14 @@ function displayBook() {
         deleteButton.src = "delete.png"
         deleteButton.addEventListener('click',(e) => {
             card.remove()
-
-            myLibrary.splice(card.dataset.thing, 1)
-            console.log(myLibrary)
-            console.log(card.dataset.thing)
-
+            myLibrary.splice(card.dataset.index, 1)
             myLibrary.forEach(element => {
-                card.dataset.thing = myLibrary.indexOf(element)
+                card.dataset.index = myLibrary.indexOf(element)
             })
         })
         card.append(divTitle, divAuthor, divPages, divRead)
         card.append(readOrNot)
         card.append(deleteButton)
-
-        console.log(card.dataset.thing)
-
     });
 }
 
