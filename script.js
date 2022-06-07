@@ -13,7 +13,7 @@ function Book(title, author, pageLength, completedPages) {
   this.completedPages = completedPages
 }
 function addBookToLibrary(book) {
- return  myLibrary.push(book)
+   myLibrary.push(book)
 }
 harryPotter = new Book("Harry Potter and the Sorcerer's Stone", "J.K Rowling", 320, 0)
 percyJackson = new Book("Percy", "Dude", 500, 250 )
@@ -25,6 +25,7 @@ function displayBook() {
     myLibrary.forEach(element => {
         let card = document.createElement('div')
         card.classList.add('card')
+        card.dataset.thing = myLibrary.indexOf(element)
         container.append(card)
         let divTitle = document.createElement('div')
         divTitle.append('Title: ' + element.title)
@@ -39,11 +40,22 @@ function displayBook() {
         deleteButton.src = "delete.png"
         deleteButton.addEventListener('click',(e) => {
             card.remove()
+
+            myLibrary.splice(card.dataset.thing, 1)
+            console.log(myLibrary)
+            console.log(card.dataset.thing)
+
+            myLibrary.forEach(element => {
+                card.dataset.thing = myLibrary.indexOf(element)
+            })
         })
         card.append(divTitle, divAuthor, divPages, divRead)
         card.append(deleteButton)
+        console.log(card.dataset.thing)
+
     });
 }
+
 displayBook()
 const button = document.querySelector('button')
 button.classList.add('button')
@@ -54,8 +66,6 @@ button.addEventListener('click', (e) => {
         body.append(description)
         
         let forms = document.createElement('form')
-        
-
         let nameInput = document.createElement('input')
         let nameLabel = document.createElement('label')
         nameLabel.append('Title: ')
