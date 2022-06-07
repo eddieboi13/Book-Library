@@ -34,8 +34,14 @@ function displayBook() {
         divPages.append('Page Length: ' + element.pageLength)
         let divRead = document.createElement('div')
         divRead.append("Pages Read: " + element.completedPages)
+        let deleteButton = document.createElement('img')
+        deleteButton.classList.add('deleteButton')
+        deleteButton.src = "delete.png"
+        deleteButton.addEventListener('click',(e) => {
+            card.remove()
+        })
         card.append(divTitle, divAuthor, divPages, divRead)
-
+        card.append(deleteButton)
     });
 }
 displayBook()
@@ -46,7 +52,9 @@ button.addEventListener('click', (e) => {
         let description = document.createElement('div')
         description.classList.add('description')
         body.append(description)
+        
         let forms = document.createElement('form')
+        
 
         let nameInput = document.createElement('input')
         let nameLabel = document.createElement('label')
