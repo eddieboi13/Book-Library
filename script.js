@@ -24,6 +24,22 @@ function displayBook() {
 
     myLibrary.forEach(element => {
         let card = document.createElement('div')
+        let readOrNot = document.createElement('div')
+        let readText = document.createTextNode('Read')
+        let notReadText = document.createTextNode('Not Read')
+        readOrNot.classList.add('readButton')
+        readOrNot.append(readText)
+        readOrNot.addEventListener('click', (e) => {
+            if(readOrNot.contains(readText)) {
+                readOrNot.removeChild(readText)
+                readOrNot.append(notReadText)
+            }
+            else {
+                readOrNot.removeChild(notReadText)
+                readOrNot.append(readText)
+            }
+            
+        })
         card.classList.add('card')
         card.dataset.thing = myLibrary.indexOf(element)
         container.append(card)
@@ -50,6 +66,7 @@ function displayBook() {
             })
         })
         card.append(divTitle, divAuthor, divPages, divRead)
+        card.append(readOrNot)
         card.append(deleteButton)
         console.log(card.dataset.thing)
 
