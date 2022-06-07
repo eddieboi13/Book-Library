@@ -12,6 +12,7 @@ body {
     grid-row: 2 / 3;
     grid-template-columns: repeat( auto-fit, 1fr );;
     grid-template-rows: 1fr;
+    justify-content: center;
 }
 .card {
     background-color: #0891b2;
@@ -19,13 +20,15 @@ body {
     flex-direction: column;
     font-size: 20px;
     grid-row: 1 / 2;
-    width: clamp(200px, 300px, 600px);
+    width: 200px;
+    width: minmax(100px, 600px);
     height: 200px;
     border-radius: 15px;
     border: solid;
-    margin-left: 40px;
+    padding: 5px;
+    margin: 5px;
 }
-button {
+.button {
     border-radius: 10px;
     height: 50px;
     width: 150px;
@@ -35,6 +38,9 @@ button {
     grid-row: 3 / 4;
     margin-top: 25px;
     justify-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .description {
     border-color: black;
@@ -44,6 +50,11 @@ button {
     margin-top: 200px;
     margin-left: 500px;
     width: 400px;
-    height: 600px;
+    height: 300px;
     border-radius: 30px;
+    padding: 10px;
+}
+form {
+    display: flex;
+    flex-direction: column;
 }
