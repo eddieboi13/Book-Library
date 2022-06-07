@@ -6,17 +6,18 @@ function removeAllChildNodes(parent) {
     }
 }
 
-function Book(title, author, pageLength, completedPages) {
+function Book(title, author, pageLength, completedPages, readStatus) {
   this.title = title
   this.author = author
   this.pageLength = pageLength
   this.completedPages = completedPages
+  this.readStatus = readStatus
 }
 function addBookToLibrary(book) {
    myLibrary.push(book)
 }
-harryPotter = new Book("Harry Potter and the Sorcerer's Stone", "J.K Rowling", 320, 0)
-percyJackson = new Book("Percy", "Dude", 500, 250 )
+harryPotter = new Book("Harry Potter and the Sorcerer's Stone", "J.K Rowling", 320, 0, "Not Read")
+percyJackson = new Book("Percy", "Dude", 500, 250, "Read" )
 addBookToLibrary(harryPotter)
 addBookToLibrary(percyJackson)
 const container = document.querySelector('.container')
@@ -28,15 +29,35 @@ function displayBook() {
         let readText = document.createTextNode('Read')
         let notReadText = document.createTextNode('Not Read')
         readOrNot.classList.add('readButton')
-        readOrNot.append(readText)
+        if(element.readStatus == 'Read'&& !readOrNot.hasChildNodes()) {
+            readOrNot.append(readText)
+        } else if (element.readStatus == 'Not Read'&& !readOrNot.hasChildNodes()) {
+            readOrNot.append(notReadText)
+        } else if (element.readStatus == 'Read'&& readOrNot.hasChildNodes()) {
+            removeAllChildNodes(readOrNot)
+            readOrNot.appendChild(readText)
+        } else if (element.readStatus == 'Not Read'&& readOrNot.hasChildNodes()) {
+            removeAllChildNodes(readOrNot)
+            readOrNot.appendChild(notReadText)
+        }
+        
         readOrNot.addEventListener('click', (e) => {
+
             if(readOrNot.contains(readText)) {
                 readOrNot.removeChild(readText)
                 readOrNot.append(notReadText)
+            } else if (!readOrNot.hasChildNodes()) {
+                readOrNot.append(readText)
             }
             else {
                 readOrNot.removeChild(notReadText)
                 readOrNot.append(readText)
+            }
+            if(readOrNot.contains(readText)) {
+                element.readStatus = 'Read'
+            }
+            else if (readOrNot.contains(notReadText)) {
+                element.readStatus = 'Not Read'
             }
             
         })
@@ -52,6 +73,8 @@ function displayBook() {
         let divRead = document.createElement('div')
         divRead.append("Pages Read: " + element.completedPages)
         let deleteButton = document.createElement('img')
+
+
         deleteButton.classList.add('deleteButton')
         deleteButton.src = "delete.png"
         deleteButton.addEventListener('click',(e) => {
@@ -68,6 +91,7 @@ function displayBook() {
         card.append(divTitle, divAuthor, divPages, divRead)
         card.append(readOrNot)
         card.append(deleteButton)
+
         console.log(card.dataset.thing)
 
     });
